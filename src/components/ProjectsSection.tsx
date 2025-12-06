@@ -1,4 +1,5 @@
-import { ExternalLink, Code } from "lucide-react";
+import { Code } from "lucide-react";
+import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 
 const projects = [
   {
@@ -72,10 +73,12 @@ const projects = [
 ];
 
 const ProjectsSection = () => {
+  const { ref, isIntersecting } = useIntersectionObserver();
+
   return (
     <section id="projects" className="py-20 bg-background">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
+        <div ref={ref} className={`text-center mb-16 transition-all duration-700 ${isIntersecting ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             Featured <span className="text-gradient">Projects</span>
           </h2>
@@ -88,7 +91,7 @@ const ProjectsSection = () => {
           {projects.map((project, index) => (
             <div
               key={index}
-              className="group bg-gradient-card p-6 rounded-xl border border-border shadow-card hover:border-primary/50 transition-all duration-300 hover:-translate-y-1"
+              className="group bg-gradient-card p-6 rounded-xl border border-border shadow-card hover:border-primary/50 hover:shadow-[0_0_30px_rgba(var(--primary),0.2)] transition-all duration-300 hover:-translate-y-2 cursor-pointer"
             >
               <div className="flex items-center justify-between mb-4">
                 <Code className="text-primary" size={24} />

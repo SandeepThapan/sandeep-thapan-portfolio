@@ -1,4 +1,5 @@
 import { Code2, Database, Layers, Zap } from "lucide-react";
+import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 
 const highlights = [
   {
@@ -24,13 +25,15 @@ const highlights = [
 ];
 
 const AboutSection = () => {
+  const { ref, isIntersecting } = useIntersectionObserver();
+
   return (
     <section id="about" className="py-20 bg-secondary/30">
       <div className="container mx-auto px-6">
         <div className="max-w-6xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left Content */}
-            <div>
+            <div ref={ref} className={`transition-all duration-700 ${isIntersecting ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
               <h2 className="text-3xl md:text-4xl font-bold mb-6">
                 About <span className="text-gradient">Me</span>
               </h2>
@@ -51,11 +54,11 @@ const AboutSection = () => {
             </div>
 
             {/* Right - Highlights */}
-            <div className="grid sm:grid-cols-2 gap-4">
+            <div className={`grid sm:grid-cols-2 gap-4 transition-all duration-700 delay-300 ${isIntersecting ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`}>
               {highlights.map((item, index) => (
                 <div
                   key={index}
-                  className="bg-gradient-card p-5 rounded-xl border border-border shadow-card hover:border-primary/50 transition-all duration-300"
+                  className="bg-gradient-card p-5 rounded-xl border border-border shadow-card hover:border-primary/50 hover:scale-105 transition-all duration-300"
                 >
                   <div className="w-10 h-10 bg-gradient-primary rounded-lg flex items-center justify-center mb-3">
                     <item.icon size={20} className="text-primary-foreground" />

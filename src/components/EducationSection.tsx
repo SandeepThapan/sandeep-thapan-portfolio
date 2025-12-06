@@ -1,4 +1,5 @@
 import { GraduationCap, Calendar } from "lucide-react";
+import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 
 const education = [
   {
@@ -34,12 +35,14 @@ const languages = [
 ];
 
 const EducationSection = () => {
+  const { ref, isIntersecting } = useIntersectionObserver();
+
   return (
     <section className="py-20 bg-secondary/30">
       <div className="container mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
           {/* Education */}
-          <div>
+          <div ref={ref} className={`transition-all duration-700 ${isIntersecting ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
             <h2 className="text-3xl font-bold mb-8">
               <span className="text-gradient">Education</span>
             </h2>
@@ -48,7 +51,7 @@ const EducationSection = () => {
               {education.map((edu, index) => (
                 <div
                   key={index}
-                  className="bg-gradient-card p-5 rounded-xl border border-border shadow-card"
+                  className="bg-gradient-card p-5 rounded-xl border border-border shadow-card hover:border-primary/30 hover:scale-[1.02] transition-all duration-300"
                 >
                   <div className="flex items-start gap-4">
                     <div className="w-10 h-10 bg-gradient-primary rounded-lg flex items-center justify-center flex-shrink-0">
@@ -72,12 +75,12 @@ const EducationSection = () => {
           </div>
 
           {/* Languages */}
-          <div>
+          <div className={`transition-all duration-700 delay-300 ${isIntersecting ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`}>
             <h2 className="text-3xl font-bold mb-8">
               <span className="text-gradient">Languages</span>
             </h2>
 
-            <div className="bg-gradient-card p-6 rounded-xl border border-border shadow-card">
+            <div className="bg-gradient-card p-6 rounded-xl border border-border shadow-card hover:border-primary/30 transition-all duration-300">
               <div className="space-y-4">
                 {languages.map((lang, index) => (
                   <div key={index} className="flex items-center justify-between">

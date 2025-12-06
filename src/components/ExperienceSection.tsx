@@ -1,4 +1,5 @@
 import { Briefcase, Calendar } from "lucide-react";
+import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 
 const experiences = [
   {
@@ -28,10 +29,12 @@ const experiences = [
 ];
 
 const ExperienceSection = () => {
+  const { ref, isIntersecting } = useIntersectionObserver();
+
   return (
     <section id="experience" className="py-20 bg-secondary/30">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
+        <div ref={ref} className={`text-center mb-16 transition-all duration-700 ${isIntersecting ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             Work <span className="text-gradient">Experience</span>
           </h2>
@@ -42,7 +45,7 @@ const ExperienceSection = () => {
 
         <div className="max-w-4xl mx-auto">
           {experiences.map((exp, index) => (
-            <div key={index} className="relative pl-8 pb-12 last:pb-0">
+            <div key={index} className="relative pl-8 pb-12 last:pb-0 group">
               {/* Timeline Line */}
               {index !== experiences.length - 1 && (
                 <div className="absolute left-[11px] top-8 bottom-0 w-0.5 bg-border" />
@@ -54,7 +57,7 @@ const ExperienceSection = () => {
               </div>
 
               {/* Content */}
-              <div className="bg-gradient-card p-6 rounded-xl border border-border shadow-card ml-4">
+              <div className="bg-gradient-card p-6 rounded-xl border border-border shadow-card ml-4 hover:border-primary/30 transition-all duration-300 hover:scale-[1.02]">
                 <div className="flex flex-wrap items-start justify-between gap-4 mb-4">
                   <div>
                     <h3 className="text-xl font-semibold text-foreground">{exp.role}</h3>

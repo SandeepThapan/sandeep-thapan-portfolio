@@ -1,10 +1,13 @@
 import { Mail, Phone, MapPin, Send } from "lucide-react";
+import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 
 const ContactSection = () => {
+  const { ref, isIntersecting } = useIntersectionObserver();
+
   return (
     <section id="contact" className="py-20 bg-background">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
+        <div ref={ref} className={`text-center mb-16 transition-all duration-700 ${isIntersecting ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             Get In <span className="text-gradient">Touch</span>
           </h2>
@@ -18,7 +21,7 @@ const ContactSection = () => {
             {/* Email Card */}
             <a
               href="mailto:sandeepthapan429@gmail.com"
-              className="group bg-gradient-card p-6 rounded-xl border border-border shadow-card hover:border-primary/50 transition-all duration-300 text-center"
+              className="group bg-gradient-card p-6 rounded-xl border border-border shadow-card hover:border-primary/50 hover:scale-105 transition-all duration-300 text-center"
             >
               <div className="w-14 h-14 bg-gradient-primary rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:glow-primary transition-all">
                 <Mail className="text-primary-foreground" size={24} />
@@ -30,7 +33,7 @@ const ContactSection = () => {
             {/* Phone Card */}
             <a
               href="tel:+919728231429"
-              className="group bg-gradient-card p-6 rounded-xl border border-border shadow-card hover:border-primary/50 transition-all duration-300 text-center"
+              className="group bg-gradient-card p-6 rounded-xl border border-border shadow-card hover:border-primary/50 hover:scale-105 transition-all duration-300 text-center"
             >
               <div className="w-14 h-14 bg-gradient-primary rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:glow-primary transition-all">
                 <Phone className="text-primary-foreground" size={24} />
@@ -56,7 +59,7 @@ const ContactSection = () => {
             </p>
             <a
               href="mailto:sandeepthapan429@gmail.com"
-              className="inline-flex items-center gap-2 px-8 py-3 bg-gradient-primary text-primary-foreground font-semibold rounded-lg hover:opacity-90 transition-opacity glow-primary"
+              className="inline-flex items-center gap-2 px-8 py-3 bg-gradient-primary text-primary-foreground font-semibold rounded-lg hover:opacity-90 hover:scale-105 transition-all glow-primary"
             >
               <Send size={18} />
               Send a Message
