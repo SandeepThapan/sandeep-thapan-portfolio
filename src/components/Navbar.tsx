@@ -47,7 +47,8 @@ const Navbar = () => {
               </a>
             ))}
             <a
-              href="#contact"
+              href="/SandeepResume.pdf"
+              download="Sandeep_Thapan_Resume.pdf"
               className="px-4 py-2 bg-gradient-primary text-primary-foreground text-sm font-semibold rounded-lg hover:opacity-90 transition-opacity flex items-center gap-2"
             >
               <Download size={16} />
