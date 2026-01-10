@@ -8,7 +8,7 @@ const Footer = () => {
           {/* Top Section */}
           <div className="grid md:grid-cols-3 gap-8 mb-8">
             {/* Brand */}
-            <div>
+            <div>    
               <h3 className="text-xl font-bold text-gradient mb-3">Sandeep Thapan</h3>
               <p className="text-sm text-muted-foreground">
                 Full Stack Developer specializing in .NET Core, React.js, and enterprise applications.
