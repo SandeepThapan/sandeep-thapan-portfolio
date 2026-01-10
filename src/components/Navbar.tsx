@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { Menu, X, Download } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Menu, X, Download, LogIn } from "lucide-react";
 
 const navLinks = [
   { href: "#about", label: "About" },
@@ -24,9 +25,8 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-background/80 backdrop-blur-lg border-b border-border" : "bg-transparent"
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "bg-background/80 backdrop-blur-lg border-b border-border" : "bg-transparent"
+        }`}
     >
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
@@ -54,6 +54,13 @@ const Navbar = () => {
               <Download size={16} />
               Resume
             </a>
+            <Link
+              to="/login"
+              className="px-4 py-2 bg-purple-600 text-white text-sm font-semibold rounded-lg hover:bg-purple-700 transition-colors flex items-center gap-2"
+            >
+              <LogIn size={16} />
+              Login
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -78,6 +85,14 @@ const Navbar = () => {
                 {link.label}
               </a>
             ))}
+            <Link
+              to="/login"
+              className="block py-2 text-purple-600 hover:text-purple-700 font-semibold transition-colors flex items-center gap-2"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              <LogIn size={16} />
+              Login
+            </Link>
           </div>
         )}
       </div>
