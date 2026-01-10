@@ -2,7 +2,7 @@ import { Github, Linkedin, Mail, Heart } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className="py-12 bg-secondary/30 border-t border-border">
+    <footer     className="py-12 bg-secondary/30 border-t border-border">
       <div className="container mx-auto px-6">
         <div className="max-w-6xl mx-auto">
           {/* Top Section */}
