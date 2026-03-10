@@ -5,7 +5,7 @@ export type UserRole = 'admin' | 'employee';
 interface User {
     email: string;
     role: UserRole;
-}
+}  
 
 interface AuthContextType {
     user: User | null;
